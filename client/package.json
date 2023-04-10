@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/danny-avila/chatgpt-clone#readme",
   "dependencies": {
+    "@auth0/auth0-react": "^2.0.1",
     "@headlessui/react": "^1.7.13",
     "@radix-ui/react-alert-dialog": "^1.0.2",
     "@radix-ui/react-checkbox": "^1.0.3",
@@ -46,8 +47,10 @@
     "export-from-json": "^1.7.2",
     "filenamify": "^5.1.1",
     "html2canvas": "^1.4.1",
+    "i": "^0.3.7",
     "lodash": "^4.17.21",
     "lucide-react": "^0.113.0",
+    "npm": "^9.6.4",
     "rc-input-number": "^7.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
 import Root from './routes/Root';
 import Chat from './routes/Chat';
 import Search from './routes/Search';
@@ -8,31 +8,48 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { ScreenshotProvider } from './utils/screenshotContext.jsx';
 import { useGetSearchEnabledQuery, useGetUserQuery, useGetEndpointsQuery, useGetPresetsQuery} from '~/data-provider';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
+import { AuthProvider } from "~/auth/AuthProvider";
+import Callback from "~/auth/components/Callback";
+
+const AuthLayout = () => (
+  <AuthProvider>
+    <Outlet />
+  </AuthProvider>
+);
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Root />,
+    path: 'callback',
+    element: <Callback />
+  }, 
+  {
+    element: <AuthLayout />,
     children: [
       {
-        index: true,
-        element: (
-          <Navigate
-            to="/chat/new"
-            replace={true}
-          />
-        )
+        path: '/',
+        element: <Root />,
+        children: [
+          {
+            index: true,
+            element: (
+              <Navigate
+                to="/chat/new"
+                replace={true}
+              />
+            )
+          },
+          {
+            path: 'chat/:conversationId?',
+            element: <Chat />
+          },
+          {
+            path: 'search/:query?',
+            element: <Search />
+          }
+        ]
       },
-      {
-        path: 'chat/:conversationId?',
-        element: <Chat />
-      },
-      {
-        path: 'search/:query?',
-        element: <Search />
-      }
     ]
-  }
+  },
 ]);
 
 const App = () => {
