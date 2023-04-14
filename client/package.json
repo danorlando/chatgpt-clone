@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/danny-avila/chatgpt-clone#readme",
   "dependencies": {
-    "@axa-fr/react-oidc": "^6.16.13",
+    "@axa-fr/react-oidc": "^6.16.14",
     "@headlessui/react": "^1.7.13",
     "@radix-ui/react-alert-dialog": "^1.0.2",
     "@radix-ui/react-checkbox": "^1.0.3",

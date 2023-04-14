@@ -14,7 +14,7 @@ export default function Root() {
     return (
       <div className="dark:gpt-dark-gray flex h-auto flex-col items-center text-sm m-auto">
 
-      <button onClick={() => login()}>Log in</button>;
+      <button onClick={() => login('/profile')}>Log in</button>;
       </div>
     )
   }

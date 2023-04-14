@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Root from './routes/Root';
 import Chat from './routes/Chat';
@@ -9,9 +9,10 @@ import { ScreenshotProvider } from './utils/screenshotContext.jsx';
 import { useGetSearchEnabledQuery, useGetUserQuery, useGetEndpointsQuery, useGetPresetsQuery} from '~/data-provider';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import { OidcProvider } from '@axa-fr/react-oidc';
-import {configurationGoogle} from './auth/configs';
+import {configurationAuth0} from './auth/configs';
+import {Profile} from './routes/Profile';
 
-console.log("configurationGoogle", configurationGoogle);
+console.log("configuration", configurationAuth0);
 const router = createBrowserRouter([
   {
     path: '/',
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: 'search/:query?',
         element: <Search />
+      }, 
+      {
+        path: 'profile',
+        element: <Profile />
       }
     ]
   }
@@ -86,7 +91,7 @@ const App = () => {
 
   if (user)
     return (
-      <OidcProvider {...configurationGoogle}>
+      <OidcProvider {...configurationAuth0}>
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
       </OidcProvider>

@@ -1,11 +1,11 @@
-import { TokenRenewMode } from '@axa-fr/react-oidc';
+// import { TokenRenewMode } from '@axa-fr/react-oidc';
 
 export const configurationAuth0 = {
-  client_id: 'xGZxEAJhzlkuQUlWl90y1ntIX-0UDWHx',
-  redirect_uri: window.location.origin + '/callback',
+  client_id: import.meta.env.VITE_AUTH0_CLIENT_ID,
+  redirect_uri: window.location.origin,
   scope: 'openid profile email api offline_access',
-  authority: 'https://kdhttps.auth0.com',
-  refresh_time_before_tokens_expiration_in_second: 10,
+  authority: import.meta.env.VITE_AUTH0_AUTHORITY,
+  refresh_time_before_tokens_expiration_in_second: 86400,
   service_worker_relative_url: '/OidcServiceWorker.js',
   service_worker_only: false,
 };
@@ -13,7 +13,7 @@ export const configurationAuth0 = {
 export const configurationGoogle = {
   client_id: import.meta.env.VITE_GOOGLE_OIDC_CLIENT_ID,
   redirect_uri: `${window.location.origin}/multi-auth/callback-google`,
-  silent_redirect_uri: window.location.origin + '/multi-auth/silent-callback-google',
+  // silent_redirect_uri: window.location.origin + '/multi-auth/silent-callback-google',
   // silent_login_uri: window.location.origin + '/authentication/silent-login',
   scope: 'openid profile email',
   authority: 'https://accounts.google.com/',
