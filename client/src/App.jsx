@@ -8,20 +8,10 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { ScreenshotProvider } from './utils/screenshotContext.jsx';
 import { useGetSearchEnabledQuery, useGetUserQuery, useGetEndpointsQuery, useGetPresetsQuery} from '~/data-provider';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
-import { AuthProvider } from "react-oidc-context";
+import { OidcProvider } from '@axa-fr/react-oidc';
+import {configurationGoogle} from './auth/configs';
 
-const oidcConfig = {
-  authority: import.meta.env.VITE_OIDC_AUTHORITY,
-  client_id: import.meta.env.VITE_OIDC_CLIENT_ID,
-  redirect_uri: import.meta.env.VITE_OIDC_REDIRECT_URI,
-  client_secret: import.meta.env.VITE_OIDC_CLIENT_SECRET,
-  onSigninCallback: (user) => {
-    console.log(user);
-    // window.history.replaceState({}, document.title, window.location.pathname);
-  }
-};
-
-console.log("oidcConfig", oidcConfig);
+console.log("configurationGoogle", configurationGoogle);
 const router = createBrowserRouter([
   {
     path: '/',
@@ -96,10 +86,10 @@ const App = () => {
 
   if (user)
     return (
-      <AuthProvider {...oidcConfig}>
+      <OidcProvider {...configurationGoogle}>
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
-      </AuthProvider>
+      </OidcProvider>
     );
   else return <div className="flex h-screen"></div>;
 };
