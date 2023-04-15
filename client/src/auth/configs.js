@@ -12,7 +12,7 @@ export const configurationAuth0 = {
 
 export const configurationGoogle = {
   client_id: import.meta.env.VITE_GOOGLE_OIDC_CLIENT_ID,
-  redirect_uri: `${window.location.origin}/multi-auth/callback-google`,
+  redirect_uri: window.location.origin,
   // silent_redirect_uri: window.location.origin + '/multi-auth/silent-callback-google',
   // silent_login_uri: window.location.origin + '/authentication/silent-login',
   scope: 'openid profile email',

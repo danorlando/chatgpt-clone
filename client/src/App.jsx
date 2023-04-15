@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Root from './routes/Root';
 import Chat from './routes/Chat';
@@ -12,7 +12,6 @@ import { OidcProvider } from '@axa-fr/react-oidc';
 import {configurationAuth0} from './auth/configs';
 import {Profile} from './routes/Profile';
 
-console.log("configuration", configurationAuth0);
 const router = createBrowserRouter([
   {
     path: '/',
@@ -91,7 +90,7 @@ const App = () => {
 
   if (user)
     return (
-      <OidcProvider {...configurationAuth0}>
+      <OidcProvider configuration={configurationAuth0}>
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
       </OidcProvider>

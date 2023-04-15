@@ -6,7 +6,7 @@
 
 // Domains used by OIDC server must be also declared here
 const trustedDomains = {
-  default:[ "http://localhost:3080", "https://accounts.google.com", "https://dev-6p6dxb6obb331271.us.auth0.com/"],
+  default:[ "http://localhost:3080", "https://dev-6p6dxb6obb331271.us.auth0.com", "https://oauth2.googleapis.com", "https://openidconnect.googleapis.com", "https://accounts.google.com"],
   config_google: ["https://oauth2.googleapis.com", "https://openidconnect.googleapis.com", "https://accounts.google.com"],
   config_auth0: ["https://dev-6p6dxb6obb331271.us.auth0.com"],
 };

@@ -27,5 +27,7 @@ module.exports = {
       'react/prop-types': ['off'],
       'react/display-name': ['off'],
       "no-debugger":"off",
+      "react/jsx-uses-react": "off",
+       "react/react-in-jsx-scope": "off"
   }
 }
