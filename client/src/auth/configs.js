@@ -2,7 +2,8 @@
 
 export const configurationAuth0 = {
   client_id: import.meta.env.VITE_AUTH0_CLIENT_ID,
-  redirect_uri: window.location.origin,
+  redirect_uri: window.location.origin + '/authentication/callback',
+  silent_redirect_uri: window.location.origin + '/authentication/silent-callback',
   scope: 'openid profile email api offline_access',
   authority: import.meta.env.VITE_AUTH0_AUTHORITY,
   refresh_time_before_tokens_expiration_in_second: 86400,
@@ -12,11 +13,11 @@ export const configurationAuth0 = {
 
 export const configurationGoogle = {
   client_id: import.meta.env.VITE_GOOGLE_OIDC_CLIENT_ID,
-  redirect_uri: window.location.origin,
+  redirect_uri: window.location.origin + '/authentication/callback',
   // silent_redirect_uri: window.location.origin + '/multi-auth/silent-callback-google',
   // silent_login_uri: window.location.origin + '/authentication/silent-login',
   scope: 'openid profile email',
-  authority: 'https://accounts.google.com/',
+  authority: 'https://accounts.google.com',
   service_worker_relative_url: '/OidcServiceWorker.js',
   service_worker_only: false,
   token_request_extras: {
