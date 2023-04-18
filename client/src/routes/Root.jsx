@@ -5,6 +5,7 @@ import Nav from '../components/Nav';
 import MobileNav from '../components/Nav/MobileNav';
 import Spinner from '../components/svg/Spinner.jsx';
 import { useOidc } from '@axa-fr/react-oidc';
+import { Button } from '~/components/ui/Button'
 
 export default function Root() {
   const [navVisible, setNavVisible] = useState(false);
@@ -12,9 +13,9 @@ export default function Root() {
   
   if (!isAuthenticated) {
     return (
-      <div className="dark:gpt-dark-gray flex h-auto flex-col items-center text-sm m-auto">
+      <div className="dark:gpt-dark-gray flex h-auto flex-col items-center text-sm m-auto mt-10">
 
-      <button onClick={() => login('/profile')}>Log in</button>;
+      <Button onClick={() => login('/profile')}>Log in</Button>;
       </div>
     )
   }

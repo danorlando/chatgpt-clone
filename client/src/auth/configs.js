@@ -8,6 +8,7 @@ export const configurationAuth0 = {
   authority: import.meta.env.VITE_AUTH0_AUTHORITY,
   service_worker_relative_url: '/OidcServiceWorker.js',
   service_worker_only: false,
+  token_renew_mode: TokenRenewMode.access_token_invalid
 };
 
 export const configurationGoogle = {
