@@ -24,39 +24,39 @@ export const configuration = {
   service_worker_only: false,
 };
 
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <Root />,
-//     children: [
-//       {
-//         index: true,
-//         element: (
-//           <Navigate
-//             to="/chat/new"
-//             replace={true}
-//           />
-//         )
-//       },
-//       {
-//         path: 'chat/:conversationId?',
-//         element: <Chat />
-//       },
-//       {
-//         path: 'search/:query?',
-//         element: <Search />
-//       }, 
-//       {
-//         path: 'profile',
-//         element: <Profile />
-//       },
-//       // {
-//       //   path: 'authentication/callback',
-//       //   element: <Callback />
-//       // }
-//     ]
-//   }
-// ]);
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      {
+        index: true,
+        element: (
+          <Navigate
+            to="/chat/new"
+            replace={true}
+          />
+        )
+      },
+      {
+        path: 'chat/:conversationId?',
+        element: <Chat />
+      },
+      {
+        path: 'search/:query?',
+        element: <Search />
+      }, 
+      {
+        path: 'profile',
+        element: <Profile />
+      },
+      // {
+      //   path: 'authentication/callback',
+      //   element: <Callback />
+      // }
+    ]
+  }
+]);
 
 const App = () => {
   const [user, setUser] = useRecoilState(store.user);
@@ -64,59 +64,54 @@ const App = () => {
   const setEndpointsConfig = useSetRecoilState(store.endpointsConfig);
   const setPresets = useSetRecoilState(store.presets);
 
-  // const searchEnabledQuery = useGetSearchEnabledQuery();
-  // const userQuery = useGetUserQuery();
-  // const endpointsQuery = useGetEndpointsQuery();
-  // const presetsQuery = useGetPresetsQuery();
+  const searchEnabledQuery = useGetSearchEnabledQuery();
+  const userQuery = useGetUserQuery();
+  const endpointsQuery = useGetEndpointsQuery();
+  const presetsQuery = useGetPresetsQuery();
 
-  // useEffect(() => {
-  //   if(endpointsQuery.data) {
-  //     setEndpointsConfig(endpointsQuery.data);
-  //   } else if(endpointsQuery.isError) {
-  //     console.error("Failed to get endpoints", endpointsQuery.error);
-  //     window.location.href = '/auth/login';
-  //   }
-  // }, [endpointsQuery.data, endpointsQuery.isError]);
+  useEffect(() => {
+    if(endpointsQuery.data) {
+      setEndpointsConfig(endpointsQuery.data);
+    } else if(endpointsQuery.isError) {
+      console.error("Failed to get endpoints", endpointsQuery.error);
+      window.location.href = '/auth/login';
+    }
+  }, [endpointsQuery.data, endpointsQuery.isError]);
 
-  // useEffect(() => {
-  //   if(presetsQuery.data) {
-  //     setPresets(presetsQuery.data);
-  //   } else if(presetsQuery.isError) {
-  //     console.error("Failed to get presets", presetsQuery.error);
-  //     window.location.href = '/auth/login';
-  //   }
-  // }, [presetsQuery.data, presetsQuery.isError]);
+  useEffect(() => {
+    if(presetsQuery.data) {
+      setPresets(presetsQuery.data);
+    } else if(presetsQuery.isError) {
+      console.error("Failed to get presets", presetsQuery.error);
+      window.location.href = '/auth/login';
+    }
+  }, [presetsQuery.data, presetsQuery.isError]);
 
-  // useEffect(() => {
-  //   if (searchEnabledQuery.data) {
-  //     setIsSearchEnabled(searchEnabledQuery.data);
-  //   } else if(searchEnabledQuery.isError) {
-  //     console.error("Failed to get search enabled", searchEnabledQuery.error);
-  //   }
-  // }, [searchEnabledQuery.data, searchEnabledQuery.isError]);
+  useEffect(() => {
+    if (searchEnabledQuery.data) {
+      setIsSearchEnabled(searchEnabledQuery.data);
+    } else if(searchEnabledQuery.isError) {
+      console.error("Failed to get search enabled", searchEnabledQuery.error);
+    }
+  }, [searchEnabledQuery.data, searchEnabledQuery.isError]);
 
-  // useEffect(() => {
-  //   if (userQuery.data) {
-  //     setUser(userQuery.data);
-  //   } else if(userQuery.isError) {
-  //     console.error("Failed to get user", userQuery.error);
-  //     window.location.href = '/auth/login';
-  //   }
-  // }, [userQuery.data, userQuery.isError]);
+  useEffect(() => {
+    if (userQuery.data) {
+      setUser(userQuery.data);
+    } else if(userQuery.isError) {
+      console.error("Failed to get user", userQuery.error);
+      window.location.href = '/auth/login';
+    }
+  }, [userQuery.data, userQuery.isError]);
 
-  // if (user)
+  if (user)
     return (
       <OidcProvider configuration={configuration}>
-        <div className='App'>
-        
-
-        <Home />
-      </div>
-        {/* <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} /> */}
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </OidcProvider>
     );
-  // else return <div className="flex h-screen"></div>;
+  else return <div className="flex h-screen"></div>;
 };
 
 
@@ -193,10 +188,8 @@ export const Home = () => {
   );
 };
 
-// export default () => (
-//   <ScreenshotProvider>
-//     <App />
-//   </ScreenshotProvider>
-// );
-
-export default App;
+export default () => (
+  <ScreenshotProvider>
+    <App />
+  </ScreenshotProvider>
+);

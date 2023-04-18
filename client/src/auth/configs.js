@@ -1,4 +1,4 @@
-// import { TokenRenewMode } from '@axa-fr/react-oidc';
+import { TokenRenewMode } from '@axa-fr/react-oidc';
 
 export const configurationAuth0 = {
   client_id: import.meta.env.VITE_AUTH0_CLIENT_ID,
@@ -6,7 +6,6 @@ export const configurationAuth0 = {
   silent_redirect_uri: window.location.origin + '/authentication/silent-callback',
   scope: 'openid profile email api offline_access',
   authority: import.meta.env.VITE_AUTH0_AUTHORITY,
-  refresh_time_before_tokens_expiration_in_second: 86400,
   service_worker_relative_url: '/OidcServiceWorker.js',
   service_worker_only: false,
 };
