@@ -147,7 +147,7 @@ userSchema.methods.registerUser = (newUser, callback) => {
     title: 'Register User',
     parameters: [{ name: 'newUser', value: newUser }]
   });
-  bcrypt.genSalt(process.env.BCRYPT_SALT_ROUNDS, (err, salt) => {
+  bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(newUser.password, salt, (errh, hash) => {
       if (err) {
         console.log(err);
@@ -167,10 +167,9 @@ userSchema.methods.comparePassword = function (candidatePassword, callback) {
 };
 
 module.exports.hashPassword = async (password) => {
-  const saltRounds = process.env.BCRYPT_SALT_ROUNDS;
 
   const hashedPassword = await new Promise((resolve, reject) => {
-    bcrypt.hash(password, saltRounds, function (err, hash) {
+    bcrypt.hash(password, 10, function (err, hash) {
       if (err) reject(err);
       else resolve(hash);
     });

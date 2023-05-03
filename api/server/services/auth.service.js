@@ -6,7 +6,6 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 
 const JWTSecret = process.env.JWT_SECRET;
-const bcryptSalt = process.env.BCRYPT_SALT_ROUNDS;
 
 const isProduction = process.env.NODE_ENV === 'production';
 const clientUrl = isProduction ? process.env.CLIENT_URL_PROD : process.env.CLIENT_URL_DEV;
@@ -39,7 +38,7 @@ const requestPasswordReset = async (email) => {
   if (token) await token.deleteOne();
 
   let resetToken = crypto.randomBytes(32).toString("hex");
-  const hash = await bcrypt.hash(resetToken, Number(bcryptSalt));
+  const hash = await bcrypt.hash(resetToken, 10);
 
   await new Token({
     userId: user._id,
@@ -74,7 +73,7 @@ const resetPassword = async (userId, token, password) => {
     return new Error("Invalid or expired password reset token");
   }
 
-  const hash = await bcrypt.hash(password, Number(bcryptSalt));
+  const hash = await bcrypt.hash(password, 10);
 
   await User.updateOne(
     { _id: userId },
