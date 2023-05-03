@@ -120,13 +120,14 @@ function Login() {
             )}
           </div>
           <a
-            href="#"
+            href="/forgot-password"
             className="text-sm text-green-500 hover:underline"
           >
             Forgot Password?
           </a>
           <div className="mt-6">
             <button
+              aria-label="Sign in"
               type="submit"
               className="w-full transform rounded-sm bg-green-500 px-4 py-3 tracking-wide text-white transition-colors duration-200 hover:bg-green-600 focus:bg-green-600 focus:outline-none"
             >
