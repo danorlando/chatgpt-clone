@@ -147,7 +147,7 @@ userSchema.methods.registerUser = (newUser, callback) => {
     title: 'Register User',
     parameters: [{ name: 'newUser', value: newUser }]
   });
-  bcrypt.genSalt(10, (err, salt) => {
+  bcrypt.genSalt(process.env.BCRYPT_SALT_ROUNDS, (err, salt) => {
     bcrypt.hash(newUser.password, salt, (errh, hash) => {
       if (err) {
         console.log(err);
