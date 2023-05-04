@@ -7,7 +7,6 @@ const {
   logoutController,
   refreshController,
   registrationController,
-  getOauthUserController
 } = require('../controllers/auth.controller');
 const requireJwtAuth = require('../../middleware/requireJwtAuth');
 const requireLocalAuth = require('../../middleware/requireLocalAuth');
@@ -28,7 +27,6 @@ router.post('/requestPasswordReset', resetPasswordRequestController);
 router.post('/resetPassword', resetPasswordController);
 
 // Social
-router.get('/oauth/user', requireJwtAuth, getOauthUserController);
 router.get(
   '/google',
   passport.authenticate('google', {

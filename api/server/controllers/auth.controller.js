@@ -5,17 +5,8 @@ const {
   requestPasswordReset,
   resetPassword,
 } = require("../services/auth.service");
-const jwt = require("jsonwebtoken");
-
-
-// const signUpController = async (req, res, next) => {
-//   const signupService = await signup(req.body);
-//   return res.json(signupService);
-// };
 
 const isProduction = process.env.NODE_ENV === 'production';
-const clientUrl = isProduction ? process.env.CLIENT_URL_PROD : process.env.CLIENT_URL_DEV;
-
 
 const loginController = async (req, res) => {
   try {
@@ -90,16 +81,6 @@ const getUserController = async (req, res) => {
   return res.status(200).send(req.user);
 };
 
-const getOauthUserController = async (req, res) => {
-  jwt.verify(req.cookies.token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(401).send({ message: 'Unauthorized' });
-    }
-    else {
-      return res.status(200).send(decoded);
-    }
-  });
-};
 const resetPasswordRequestController = async (req, res) => {
   try {
     const resetService = await requestPasswordReset(
@@ -196,5 +177,4 @@ module.exports = {
   registrationController,
   resetPasswordRequestController,
   resetPasswordController,
-  getOauthUserController
 };
