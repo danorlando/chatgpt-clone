@@ -31,7 +31,8 @@ services:
     environment:
       - HOST=0.0.0.0
       - NODE_ENV=production
-      - MONGO_URI=${{ secrets.MONGO_URI }}
+      # - MONGO_URI=${{ secrets.MONGO_URI }}
+      - MONGO_URI=mongodb+srv://dan:Khaleesi1@chatgpt-clone.bwrdb5n.mongodb.net/prod
       # - CHATGPT_REVERSE_PROXY=http://host.docker.internal:8080/api/conversation # if you are hosting your own chatgpt reverse proxy
       - MEILI_HOST=http://meilisearch:7700
       - MEILI_HTTP_ADDR=meilisearch:7700
