@@ -53,15 +53,40 @@ jobs:
           tags: danorlando/cleverchatai:latest
         # run: |
         #   docker push danorlando/cleverchatai
+      - name: Get Timestamp
+        uses: gerred/actions/current-time@master
+        id: current-time
 
-      # This is the step that is deploying the application to Elastic Beanstalk.
-      - name: Deploy to Elastic Beanstalk
-        uses: einaregilsson/beanstalk-deploy@v21
+      - name: Run String Replace
+        uses: frabert/replace-string-action@master
+        id: format-time
+        with:
+          pattern: '[:\.]+'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: '-'
+          flags: 'g'
+
+      - name: Generate Deployment Package
+        run: zip -r deploy.zip * -x "**node_modules**"
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v16
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: ${{ secrets.EB_APP_NAME }}
           environment_name: ${{ secrets.EB_ENV_NAME }}
+          version_label: "docker-app-${{ steps.format-time.outputs.replaced }}"
           region: ${{ secrets.EB_REGION }}
-          version_label: "version-${{ github.run_number }}"
-          deployment_package: docker-compose.yml
+          deployment_package: deploy.zip
+      # This is the step that is deploying the application to Elastic Beanstalk.
+      # - name: Deploy to Elastic Beanstalk
+      #   uses: einaregilsson/beanstalk-deploy@v21
+      #   with:
+      #     aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     application_name: ${{ secrets.EB_APP_NAME }}
+      #     environment_name: ${{ secrets.EB_ENV_NAME }}
+      #     region: ${{ secrets.EB_REGION }}
+      #     version_label: "version-${{ github.run_number }}"
+      #     deployment_package: docker-compose.yml
