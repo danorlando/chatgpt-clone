@@ -21,11 +21,10 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: install dependencies, build and run
+      - name: install dependencies and build client
         run: |
           npm install
           npm run frontend
-          npm run backend
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
