@@ -21,11 +21,11 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: npm install, build, and test
+      - name: install dependencies, build and run
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run frontend
+          npm run backend
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -39,6 +39,26 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    env:
+      BINGAI_TOKEN: ${{ secrets.BINGAI_TOKEN }}
+      CHATGPT_TOKEN: ${{ secrets.CHATGPT_TOKEN }}
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+      OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+      HOST: ${{ secrets.HOST }}
+      PORT: ${{ secrets.PORT }}
+      MEILI_HOST: ${{ secrets.MEILI_HOST }}
+      MEILI_KEY: ${{ secrets.MEILI_KEY }}
+      CREDS_KEY: ${{ secrets.CREDS_KEY }}
+      CREDS_IV: ${{ secrets.CREDS_IV }}
+      PALM_KEY: ${{ secrets.PALM_KEY }}
+      MEILI_MASTER_KEY: ${{ secrets.MEILI_MASTER_KEY }}
+      MEILI_HTTP_ADDR: ${{ secrets.MEILI_HTTP_ADDR }}
+      GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      GOOGLE_CALLBACK_URL: ${{ secrets.GOOGLE_CALLBACK_URL }}
+      JWT_SECRET_PROD: ${{ secrets.JWT_SECRET_PROD }}
+      SEARCH: ${{ secrets.SEARCH }}
+      SESSION_EXPIRY: ${{ secrets.SESSION_EXPIRY }}
 
     steps:
       - name: Download artifact from build job
