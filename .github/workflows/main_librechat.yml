@@ -41,6 +41,22 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    env:
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      HOST: ${{ secrets.HOST }}
+      PORT: ${{ secrets.PORT }}
+      CREDS_KEY: ${{ secrets.CREDS_KEY }}
+      CREDS_IV: ${{ secrets.CREDS_IV }}
+      PALM_KEY: ${{ secrets.PALM_KEY }}
+      MEILI_MASTER_KEY: ${{ secrets.MEILI_MASTER_KEY }}
+      MEILI_HTTP_ADDR: ${{ secrets.MEILI_HTTP_ADDR }}
+      GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      GOOGLE_CALLBACK_URL: ${{ secrets.GOOGLE_CALLBACK_URL }}
+      JWT_SECRET_PROD: ${{ secrets.JWT_SECRET }}
+      SEARCH: ${{ secrets.SEARCH }}
+      SESSION_EXPIRY: ${{ secrets.SESSION_EXPIRY }}
 
     steps:
       - name: Download artifact from build job
