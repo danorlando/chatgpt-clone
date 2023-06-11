@@ -43,7 +43,7 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     env:
       MONGO_URI: ${{ secrets.MONGO_URI }}
-      OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       HOST: ${{ secrets.HOST }}
       PORT: ${{ secrets.PORT }}
       CREDS_KEY: ${{ secrets.CREDS_KEY }}
