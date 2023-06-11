@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - librechat
 on:
   push:
     branches:
-      - main
+      - azr-deploy
   workflow_dispatch:
 
 jobs:
