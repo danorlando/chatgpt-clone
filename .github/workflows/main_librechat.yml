@@ -46,6 +46,7 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       HOST: ${{ secrets.HOST }}
       PORT: ${{ secrets.PORT }}
+      MEILI_HOST: ${{ secrets.MEILI_HOST }}
       CREDS_KEY: ${{ secrets.CREDS_KEY }}
       CREDS_IV: ${{ secrets.CREDS_IV }}
       PALM_KEY: ${{ secrets.PALM_KEY }}
