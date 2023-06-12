@@ -2,9 +2,9 @@
 name: Backend Unit Tests
 on:
   push:
-    branches: [ci/backend-test-workflow]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ ci/backend-test-workflow]
+    branches: [ main, dev ]
 jobs:
   tests_Backend:
     name: Run Backend unit tests
