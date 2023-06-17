@@ -53,6 +53,6 @@ export default defineConfig({
     port: 3080,
     // url: 'http://localhost:3080',
     timeout: 30_000,
-    reuseExistingServer: true
+    reuseExistingServer: !process.env.CI
   },
 });
