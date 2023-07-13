@@ -9,7 +9,7 @@ To get your OpenAI API key, you need to:
 - Go to [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys)
 - Create an account or log in with your existing one
 - Add a payment method to your account (this is not free, sorry 😬)
-- Copy your secret key (sk-...) and save it in ./.env as OPENAI_API_KEY
+- Copy your secret key (sk-...) and save it in `./.env` as `OPENAI_API_KEY`
 
 ## ChatGPT Free Access token
 
@@ -18,7 +18,7 @@ To get your Access token for ChatGPT 'Free Version', you need to:
 - Go to [https://chat.openai.com](https://chat.openai.com)
 - Create an account or log in with your existing one
 - Visit [https://chat.openai.com/api/auth/session](https://chat.openai.com/api/auth/session)
-- Copy the value of the "accessToken" field and save it in ./.env as CHATGPT_ACCESS_TOKEN
+- Copy the value of the "accessToken" field and save it in the `./.env` as `CHATGPT_ACCESS_TOKEN`
 
 Warning: There may be a chance of your account being banned if you deploy the app to multiple users with this method. Use at your own risk. 😱
 
@@ -36,7 +36,10 @@ To get your Bing Access Token, you have a few options:
   - Click on the tab "Application" (On the left of the DevTools)
   - Expand the "Cookies" (Under "Storage")
   - Copy the value of the "\_U" cookie and save it in ./.env as BING_ACCESS_TOKEN
-
+## Anthropic Endpoint (Claude)
+- Create an account at [https://console.anthropic.com/](https://console.anthropic.com/)
+- Go to [https://console.anthropic.com/account/keys](https://console.anthropic.com/account/keys) and get your api key
+- add it to `ANTHROPIC_API_KEY=` in the `.env` file
 ## Google's PaLM 2
 
 To setup PaLM 2 (via Google Cloud Vertex AI API), you need to:
