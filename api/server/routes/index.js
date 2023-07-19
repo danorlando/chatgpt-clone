@@ -11,6 +11,7 @@ const { router: endpoints } = require('./endpoints');
 const plugins = require('./plugins');
 const user = require('./user');
 const config = require('./config');
+const upload = require('./upload');
 
 module.exports = {
   search,
@@ -26,4 +27,5 @@ module.exports = {
   endpoints,
   plugins,
   config,
+  upload,
 };
