@@ -6,13 +6,12 @@ const RecursiveCharacterTextSplitter =
   require('langchain/text_splitter').RecursiveCharacterTextSplitter;
 const BufferMemory = require('langchain/memory').BufferMemory;
 const fs = require('fs');
-const path = require('path');
 
-const VectorizeDocument = async () => {
+const VectorizeDocument = async (filePath) => {
   /* Initialize the LLM to use to answer the question */
   const model = new ChatOpenAI({});
   /* Load in the file we want to do question answering over */
-  const filePath = path.join(__dirname, 'state_of_the_union.txt');
+  // const filePath = path.join(__dirname, 'state_of_the_union.txt');
   const text = fs.readFileSync(filePath, 'utf8');
   /* Split the text into chunks */
   const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });

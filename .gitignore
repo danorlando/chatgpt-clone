@@ -68,6 +68,7 @@ src/style - official.css
 config.local.ts
 **/storageState.json
 junit.xml
+uploads/
 
 # meilisearch
 meilisearch
