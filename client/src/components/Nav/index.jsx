@@ -5,6 +5,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import Conversations from '../Conversations';
 import NavLinks from './NavLinks';
 import NewChat from './NewChat';
+import FileUploadButton from './FileUploadButton';
 import Pages from '../Conversations/Pages';
 import { Panel, Spinner } from '~/components';
 import { cn } from '~/utils/';
@@ -154,6 +155,9 @@ export default function Nav({ navVisible, setNavVisible }) {
                     <span className="sr-only">Close sidebar</span>
                     <Panel open={false} />
                   </button>
+                </div>
+                <div className="flex h-11 flex-row">
+                  <FileUploadButton />
                 </div>
                 <div
                   className={`flex-1 flex-col overflow-y-auto ${

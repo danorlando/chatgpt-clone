@@ -360,3 +360,12 @@ export const useGetStartupConfig = (): QueryObserverResult<t.TStartupConfig> => 
     },
   );
 };
+
+export const useUploadFileMutation = (): UseMutationResult<
+  t.TUploadFile,
+  unknown,
+  File,
+  unknown
+> => {
+  return useMutation((payload: File) => dataService.uploadFile(payload));
+};

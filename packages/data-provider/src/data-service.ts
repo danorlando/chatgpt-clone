@@ -117,3 +117,7 @@ export const updateUserPlugins = (payload: t.TUpdateUserPlugins) => {
 export const getStartupConfig = (): Promise<t.TStartupConfig> => {
   return request.get(endpoints.config());
 };
+
+export const uploadFile = (payload: File): Promise<t.TUploadFile> => {
+  return request.post(endpoints.upload(), payload);
+};

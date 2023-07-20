@@ -267,3 +267,10 @@ export type TRefreshTokenResponse = {
 export type TRequestPasswordResetResponse = {
   link: string;
 };
+
+export type TUploadFile = {
+  message: string;
+  filename: string;
+  mimetype: string;
+  size: number;
+};
