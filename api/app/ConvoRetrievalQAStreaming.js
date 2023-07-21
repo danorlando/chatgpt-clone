@@ -1,13 +1,14 @@
-import { ChatOpenAI } from 'langchain/chat_models/openai';
-import { ConversationalRetrievalQAChain } from 'langchain/chains';
-import { HNSWLib } from 'langchain/vectorstores/hnswlib';
-import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
-import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
-import { BufferMemory } from 'langchain/memory';
+const { ChatOpenAI } = require('langchain/chat_models/openai');
+const ConversationalRetrievalQAChain = require('langchain/chains').ConversationalRetrievalQAChain;
+const HNSWLib = require('langchain/vectorstores/hnswlib').HNSWLib;
+const OpenAIEmbeddings = require('langchain/embeddings/openai').OpenAIEmbeddings;
+const RecursiveCharacterTextSplitter =
+  require('langchain/text_splitter').RecursiveCharacterTextSplitter;
+const BufferMemory = require('langchain/memory').BufferMemory;
 
-import * as fs from 'fs';
+const fs = require('fs');
 
-export const ConvoRetrievalQAStreaming = async (filePath) => {
+const ConvoRetrievalQAStreaming = async (filePath) => {
   const text = fs.readFileSync(filePath, 'utf8');
   const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
   const docs = await textSplitter.createDocuments([text]);
@@ -42,3 +43,5 @@ export const ConvoRetrievalQAStreaming = async (filePath) => {
   console.log({ streamedResponse });
   console.log(res);
 };
+
+module.exports = { ConvoRetrievalQAStreaming };
