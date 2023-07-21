@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const { VectorizeDocument } = require('../../app/VectorizeDocument');
+// const { VectorizeDocument } = require('../../app/VectorizeDocument');
+const { ConvoRetrievalQAStreaming } = require('../../app/ConvoRetrievalQAStreaming');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -28,7 +29,7 @@ router.post('/', upload.single('file'), (req, res) => {
   const file = req.file;
   console.log('File uploaded: ', file.filename);
 
-  VectorizeDocument(file.path);
+  ConvoRetrievalQAStreaming(file.path);
 
   res.status(200).send({
     message: 'File successfully uploaded',
